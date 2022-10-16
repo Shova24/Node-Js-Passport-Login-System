@@ -1,5 +1,6 @@
 express 
 ejs
+bcrypt
 
 //dev dependency
 nodemon 
