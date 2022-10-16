@@ -1,6 +1,6 @@
 import express from "express";
+import router from "./routes/Router";
 const cors = require("cors");
-const bcrypt = require("bcrypt");
 
 const app = express();
 
@@ -44,6 +44,8 @@ app.post("/register", async (req, res) => {
   // console.log(users);
   console.log("====================================");
 });
+
+app.use("/api", router);
 
 //test
 const obj = ["abc", "def"];
