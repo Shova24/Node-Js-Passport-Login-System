@@ -1,0 +1,6 @@
+express 
+ejs
+
+//dev dependency
+nodemon 
+dotenv
