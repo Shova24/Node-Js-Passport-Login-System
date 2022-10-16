@@ -3,11 +3,15 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 export default function Login() {
+  const [form] = Form.useForm();
+  const login = (values) => {
+    console.log(values);
+  };
   return (
     <>
       <Card style={{ margin: "25px" }}>
         <Divider>Login</Divider>
-        <Form labelAlign="left" labelWrap="true">
+        <Form form={form} labelAlign="left" labelWrap="true" onFinish={login}>
           <Form.Item
             label="Email"
             name="email"
@@ -31,7 +35,7 @@ export default function Login() {
             <Input.Password />
           </Form.Item>
           <Row justify="end">
-            <Button type="submit">Login</Button>
+            <Button htmlType="submit">Login</Button>
           </Row>
         </Form>
         <Row justify="center">

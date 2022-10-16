@@ -3,11 +3,24 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 export default function Registration() {
+  const [form] = Form.useForm();
+  const createNewUser = (newUser) => {
+    fetch("");
+  };
+  const register = (values) => {
+    const newUser = {
+      id: Date.now().toString(),
+      username: values.username,
+      email: values.email,
+      password: values.password,
+    };
+    console.log(newUser);
+  };
   return (
     <>
       <Card style={{ margin: "25px" }}>
         <Divider>Register</Divider>
-        <Form labelAlign="left" labelWrap="true">
+        <Form form={form} labelAlign="left" labelWrap="true" onFinish={register}>
           <Form.Item
             label="Username"
             name="username"
@@ -42,7 +55,7 @@ export default function Registration() {
             <Input.Password />
           </Form.Item>
           <Row justify="end">
-            <Button type="submit">Submit</Button>
+            <Button htmlType="submit">Submit</Button>
           </Row>
         </Form>
         <Row justify="center">
