@@ -15,7 +15,7 @@ function App() {
       .then((json) => setText(json));
   }, [text.length]);
 
-  console.log(text);
+  // console.log(text);
   return (
     <>
       <Routes>

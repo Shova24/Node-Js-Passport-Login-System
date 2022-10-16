@@ -7,10 +7,9 @@ export default function Registration() {
   const [form] = Form.useForm();
   const [user, setUser] = useState([]);
   const createNewUser = (values) => {
-    fetch("http://localhost:4000/register", {
+    fetch("http://localhost:4000/api/users/register", {
       method: "POST",
       body: JSON.stringify({
-        id: Date.now().toString(),
         username: values.username,
         email: values.email,
         password: values.password,
@@ -20,8 +19,9 @@ export default function Registration() {
       },
     })
       .then((response) => response.json())
-      .then((json) => console.log(json));
+      .then((json) => setUser(user));
   };
+  console.log(user);
 
   return (
     <>
