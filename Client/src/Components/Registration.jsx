@@ -1,26 +1,33 @@
 import { Button, Card, Checkbox, Divider, Form, Input, Row } from "antd";
 import React from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
 export default function Registration() {
   const [form] = Form.useForm();
-  const createNewUser = (newUser) => {
-    fetch("");
+  const [user, setUser] = useState([]);
+  const createNewUser = (values) => {
+    fetch("http://localhost:4000/register", {
+      method: "POST",
+      body: JSON.stringify({
+        id: Date.now().toString(),
+        username: values.username,
+        email: values.email,
+        password: values.password,
+      }),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
+    })
+      .then((response) => response.json())
+      .then((json) => console.log(json));
   };
-  const register = (values) => {
-    const newUser = {
-      id: Date.now().toString(),
-      username: values.username,
-      email: values.email,
-      password: values.password,
-    };
-    console.log(newUser);
-  };
+
   return (
     <>
       <Card style={{ margin: "25px" }}>
         <Divider>Register</Divider>
-        <Form form={form} labelAlign="left" labelWrap="true" onFinish={register}>
+        <Form form={form} labelAlign="left" labelWrap="true" onFinish={createNewUser}>
           <Form.Item
             label="Username"
             name="username"
