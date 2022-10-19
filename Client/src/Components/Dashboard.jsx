@@ -6,7 +6,7 @@ export default function Dashboard() {
   const [user, setUser] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:4000/api/users/get-user")
+    fetch("http://localhost:4000/users/get-user")
       .then((res) => res.json())
       .then((data) => setUser(data));
   }, []);

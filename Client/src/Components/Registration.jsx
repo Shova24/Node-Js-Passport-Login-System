@@ -21,7 +21,7 @@ export default function Registration() {
       .then((response) => response.json())
       .then((json) => setUser(json));
   };
-  console.log(user);
+  // console.log(user);
 
   return (
     <>

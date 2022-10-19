@@ -1,12 +1,34 @@
 import { Button, Card, Checkbox, Divider, Form, Input, Row } from "antd";
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
+import { useState } from "react";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 
 export default function Login() {
-  const [form] = Form.useForm();
-  const login = (values) => {
-    console.log(values);
+  const [user, setUser] = useState([]);
+  const navigate = useNavigate();
+  const getusers = async () => {
+    const response = await fetch("http://localhost:4000/users/get-user");
+    const users = await response.json();
+    setUser(users);
   };
+  useEffect(() => {
+    getusers();
+  }, []);
+  const [form] = Form.useForm();
+  let logInUser = null;
+  const login = (values) => {
+    user.map((el) => {
+      if (el.email === values.email) {
+        return (logInUser = el);
+      }
+    });
+    if (logInUser) {
+      navigate("/");
+    } else {
+      console.log("Can not log in ");
+    }
+  };
+  console.log(user);
   return (
     <>
       <Card style={{ margin: "25px" }}>

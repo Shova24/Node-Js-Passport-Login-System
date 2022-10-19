@@ -8,15 +8,6 @@ import Login from "./Components/Login";
 import Dashboard from "./Components/Dashboard";
 
 function App() {
-  const [text, setText] = useState("");
-
-  useEffect(() => {
-    fetch("http://localhost:4000/api")
-      .then((res) => res.json())
-      .then((json) => setText(json));
-  }, [text.length]);
-
-  // console.log(text);
   return (
     <>
       <Routes>
