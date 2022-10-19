@@ -28,7 +28,35 @@ export default function Login() {
       console.log("Can not log in ");
     }
   };
-  console.log(user);
+  // console.log(user);
+
+  const loginApi = async (values) => {
+    const response = await fetch("http://localhost:4000/users/login", {
+      method: "POST",
+      body: JSON.stringify(values),
+      headers: {
+        "Content-type": "application/json;charset=UTF-8",
+      },
+    });
+    if (response.status === 200) {
+      const data = await response.json();
+      console.log(data);
+      if (data === null) {
+        console.log("user does not exist");
+        return;
+      } else {
+        if (data) {
+          console.log("found");
+          navigate("/");
+        } else {
+          console.log("Not found as password is incorrect");
+        }
+      }
+      return;
+    } else {
+      return await Promise.reject(response);
+    }
+  };
   return (
     <>
       <Card style={{ margin: "25px" }}>
@@ -46,7 +74,8 @@ export default function Login() {
             remember: true,
           }}
           labelWrap="true"
-          onFinish={login}>
+          onFinish={loginApi}>
+          {/* onFinish={login}> */}
           <Form.Item
             label="Email"
             name="email"

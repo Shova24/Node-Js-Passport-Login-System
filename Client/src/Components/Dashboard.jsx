@@ -10,7 +10,7 @@ export default function Dashboard() {
       .then((res) => res.json())
       .then((data) => setUser(data));
   }, []);
-  console.log(user);
+  // console.log(user);
   const columns = [
     {
       title: "User Name",
