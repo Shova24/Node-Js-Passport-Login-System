@@ -11,7 +11,20 @@ export default function Login() {
     <>
       <Card style={{ margin: "25px" }}>
         <Divider>Login</Divider>
-        <Form form={form} labelAlign="left" labelWrap="true" onFinish={login}>
+        <Form
+          form={form}
+          labelCol={{
+            span: 4,
+          }}
+          wrapperCol={{
+            span: 20,
+          }}
+          labelAlign="left"
+          initialValues={{
+            remember: true,
+          }}
+          labelWrap="true"
+          onFinish={login}>
           <Form.Item
             label="Email"
             name="email"

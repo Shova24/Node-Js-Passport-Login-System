@@ -2,7 +2,8 @@ import app from "./app";
 import sequelize from "./config/Database";
 //Database Connect
 sequelize
-  .sync()
+  // .sync()
+  .authenticate()
   .then(() => {
     console.log("Connected to DB");
   })

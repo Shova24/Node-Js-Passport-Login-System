@@ -1,6 +1,10 @@
 express 
 ejs
 bcrypt
+passport 
+passport-local 
+express-session 
+express-flash
 
 //dev dependency
 nodemon 

@@ -19,7 +19,7 @@ export default function Registration() {
       },
     })
       .then((response) => response.json())
-      .then((json) => setUser(user));
+      .then((json) => setUser(json));
   };
   console.log(user);
 
@@ -27,7 +27,20 @@ export default function Registration() {
     <>
       <Card style={{ margin: "25px" }}>
         <Divider>Register</Divider>
-        <Form form={form} labelAlign="left" labelWrap="true" onFinish={createNewUser}>
+        <Form
+          form={form}
+          labelCol={{
+            span: 4,
+          }}
+          wrapperCol={{
+            span: 20,
+          }}
+          labelAlign="left"
+          initialValues={{
+            remember: true,
+          }}
+          labelWrap="true"
+          onFinish={createNewUser}>
           <Form.Item
             label="Username"
             name="username"
