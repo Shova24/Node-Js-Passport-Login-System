@@ -10,15 +10,15 @@ const Users = sequelize.define(
     username: {
       type: STRING,
       allowNull: true,
-      //length should be between 3 to 10
+      // length should be between 3 to 10
       validate: {
-        len: [3, 10],
+        len: [3, 20],
       },
     },
     email: {
       type: STRING,
       allowNull: true,
-      //valid email
+      // valid email
       validate: {
         isEmail: true,
       },
@@ -27,12 +27,12 @@ const Users = sequelize.define(
       type: STRING,
       allowNull: true,
       //must have one lowercase letter, one uppercase letter, one numeric character, length should be between 3 to 6
-      validate: {
-        len: [3, 6],
-        isLowercase: true,
-        isUppercase: true,
-        isInt: true,
-      },
+      // validate: {
+      // len: [3, 6],
+      //   isLowercase: true,
+      //   isUppercase: true,
+      //   isInt: true,
+      // },
     },
   },
   {

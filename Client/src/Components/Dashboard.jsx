@@ -10,7 +10,8 @@ export default function Dashboard() {
       .then((res) => res.json())
       .then((data) => setUser(data));
   }, []);
-  // console.log(user);
+  // console.log(user[0].id);
+
   const columns = [
     {
       title: "User Name",
@@ -28,5 +29,5 @@ export default function Dashboard() {
       key: "email",
     },
   ];
-  return <Table dataSource={user} columns={columns} />;
+  return <Table dataSource={user} columns={columns} rowKey={(record) => record.id} />;
 }

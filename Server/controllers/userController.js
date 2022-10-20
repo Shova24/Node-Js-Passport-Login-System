@@ -3,6 +3,7 @@ const bcrypt = require("bcrypt");
 
 export const registerUser = async (req, res) => {
   // console.log("Post Register : ", req.body);
+
   try {
     const { username, email, password } = req.body;
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -11,11 +12,15 @@ export const registerUser = async (req, res) => {
       email: email,
       password: hashedPassword,
     };
+    // console.log("====================================");
+    // console.log(user);
+    // console.log("====================================");
     await Users.create(user);
     res.status(201).json(user);
     return;
   } catch (err) {
     res.json("registration failed ");
+    return;
   }
   // console.log(users);
 };
@@ -25,6 +30,9 @@ export const getUser = async (req, res) => {
     const users = await Users.findAll({ raw: true });
     res.status(200).json(users);
   } catch (err) {
+    console.log("====================================");
+    console.log(err);
+    console.log("====================================");
     res.status(404).json("Not found");
   }
 };

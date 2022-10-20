@@ -1,13 +1,14 @@
 import { Button, Card, Checkbox, Divider, Form, Input, Row } from "antd";
 import React from "react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Registration() {
   const [form] = Form.useForm();
   const [user, setUser] = useState([]);
+  const navigate = useNavigate();
   const createNewUser = (values) => {
-    fetch("http://localhost:4000/api/users/register", {
+    fetch("http://localhost:4000/users/register", {
       method: "POST",
       body: JSON.stringify({
         username: values.username,
@@ -19,7 +20,13 @@ export default function Registration() {
       },
     })
       .then((response) => response.json())
-      .then((json) => setUser(json));
+      .then((json) => {
+        console.log("====================================");
+        console.log(json);
+        console.log("====================================");
+        setUser(json);
+      });
+    navigate("/");
   };
   // console.log(user);
 
