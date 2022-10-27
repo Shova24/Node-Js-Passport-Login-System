@@ -1,4 +1,4 @@
-import { Button, Card, Checkbox, Divider, Form, Input, Row } from "antd";
+import { Button, Card, Checkbox, Divider, Form, Input, Row, notification } from "antd";
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { Link, Navigate, useNavigate } from "react-router-dom";
@@ -6,6 +6,7 @@ import { Link, Navigate, useNavigate } from "react-router-dom";
 export default function Login() {
   const [user, setUser] = useState([]);
   const navigate = useNavigate();
+
   const getusers = async () => {
     const response = await fetch("http://localhost:4000/users/get-user");
     const users = await response.json();
@@ -30,6 +31,12 @@ export default function Login() {
   };
   // console.log(user);
 
+  const open = (text) => {
+    notification.open({
+      message: text,
+    });
+  };
+
   const loginApi = async (values) => {
     const response = await fetch("http://localhost:4000/users/login", {
       method: "POST",
@@ -40,18 +47,14 @@ export default function Login() {
     });
     if (response.status === 200) {
       const data = await response.json();
-      console.log(data);
-      if (data === null) {
-        console.log("user does not exist");
-        return;
+      if (typeof data === "object") {
+        open("Logged in ");
+        navigate("/");
       } else {
-        if (data) {
-          console.log("found");
-          navigate("/");
-        } else {
-          console.log("Not found as password is incorrect");
-        }
+        open("password did not matched");
+        console.log("Not found as password is incorrect", data);
       }
+      // }
       return;
     } else {
       return await Promise.reject(response);

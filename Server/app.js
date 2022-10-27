@@ -3,6 +3,8 @@ import router from "./routes/Router";
 import userRouter from "./routes/userRoute";
 const cors = require("cors");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+
 const app = express();
 
 //middlewares

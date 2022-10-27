@@ -8,6 +8,9 @@ export default function Registration() {
   const [user, setUser] = useState([]);
   const navigate = useNavigate();
   const createNewUser = (values) => {
+    const password = values.password;
+    console.log("Password : " + password);
+
     fetch("http://localhost:4000/users/register", {
       method: "POST",
       body: JSON.stringify({
@@ -17,6 +20,7 @@ export default function Registration() {
       }),
       headers: {
         "Content-type": "application/json; charset=UTF-8",
+        authorization: "Bearer ",
       },
     })
       .then((response) => response.json())
@@ -78,6 +82,56 @@ export default function Registration() {
                 required: true,
                 message: "Please input your password!",
               },
+              {
+                pattern: /[A-Z]/,
+                message: `Password A-Z`,
+              },
+              {
+                pattern: /[a-z]/,
+                message: `a-z`,
+              },
+              {
+                pattern: /(?=.*\d)/,
+                message: `number`,
+              },
+              {
+                pattern: /[A-Za-z\d]{7,}/,
+                message: `Minimum length - 8`,
+              },
+              // {
+              //   pattern: /^(?=.*[*.!@$%^&(){}[]:;<>,.?/~_+-=|\])$/,
+              //   message: `Special charecter`,
+              // },
+              {
+                pattern: /(?=.*[~!@#$%^&+=]).*/g,
+                message: `Special charecter`,
+              },
+              // {
+              //   pattern: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{4,}$/,
+              //   message: `Password Pattern`,
+              // },
+            ]}
+            hasFeedback>
+            <Input.Password />
+          </Form.Item>
+          <Form.Item
+            label="Confirm Password"
+            name="confirm"
+            dependencies={["password"]}
+            hasFeedback
+            rules={[
+              {
+                required: true,
+                message: "Please confirm your password!",
+              },
+              ({ getFieldValue }) => ({
+                validator(_, value) {
+                  if (!value || getFieldValue("password") === value) {
+                    return Promise.resolve();
+                  }
+                  return Promise.reject(new Error("The two passwords that you entered do not match!"));
+                },
+              }),
             ]}>
             <Input.Password />
           </Form.Item>
