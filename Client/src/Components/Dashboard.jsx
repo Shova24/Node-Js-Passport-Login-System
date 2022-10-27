@@ -5,7 +5,6 @@ import UserContext from "../Context/Context";
 
 export default function Dashboard() {
   const { user, getUsers } = useContext(UserContext);
-
   useEffect(() => {
     getUsers();
   }, []);

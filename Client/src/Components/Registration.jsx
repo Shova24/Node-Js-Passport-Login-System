@@ -94,7 +94,7 @@ export default function Registration() {
                 message: `number`,
               },
               {
-                pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+                pattern: /[A-Za-z\d]{8,}/,
                 message: `Minimum length - 8`,
               },
               // {

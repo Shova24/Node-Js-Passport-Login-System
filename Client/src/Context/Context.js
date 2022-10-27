@@ -8,8 +8,13 @@ export const UserProvider = ({ children }) => {
   const [user, setUser] = useState([]);
 
   const getUsers = async () => {
-    const response = await fetch("http://localhost:4000/users/get-user");
+    const response = await fetch("http://localhost:4000/users/get-user", {
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+    });
     const users = await response.json();
+    console.log("Token : ", localStorage.getItem("token"));
     setUser(users);
   };
 
