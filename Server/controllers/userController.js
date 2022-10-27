@@ -42,8 +42,9 @@ export const login = async (req, res) => {
     const user = await Users.findOne({ where: { email: req.body.email }, raw: true });
 
     if (!user) {
-      const error = new Error("User does not exist");
-      res.status(200).json(error.message);
+      // const error = new Error("User does not exist");
+      // res.status(200).json(error.message);
+      res.status(200).json("User does not exist");
       return;
     }
     const is_exist = await bcrypt.compare(req.body.password, user.password);
@@ -56,6 +57,6 @@ export const login = async (req, res) => {
     }
     return;
   } catch (err) {
-    res.status(404).json(err);
+    res.status(404).json({});
   }
 };

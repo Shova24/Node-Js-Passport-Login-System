@@ -16,6 +16,6 @@ const authenticateToken = (req, res, next) => {
 
 router.post("/register", registerUser);
 router.post("/login", login);
-router.get("/get-user", authenticateToken, getUser);
+router.get("/get-user", getUser);
 
 export default router;
