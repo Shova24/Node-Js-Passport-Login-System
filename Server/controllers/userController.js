@@ -50,6 +50,9 @@ export const login = async (req, res) => {
     const is_exist = await bcrypt.compare(req.body.password, user.password);
     if (is_exist) {
       const accessToken = jwt.sign(user, "secret");
+      console.log("====================================");
+      console.log(accessToken);
+      console.log("====================================");
       res.status(200).json(accessToken);
     } else {
       const error = new Error("Password did not matched");

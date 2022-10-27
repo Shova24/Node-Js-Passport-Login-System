@@ -24,6 +24,7 @@ export const UserProvider = ({ children }) => {
       body: JSON.stringify(values),
       headers: {
         "Content-type": "application/json;charset=UTF-8",
+        Authorization: "Bearer " + localStorage.getItem("token"),
       },
     });
     if (response.status === 200) {
@@ -34,6 +35,8 @@ export const UserProvider = ({ children }) => {
         Notification(data);
       } else {
         Notification("Logged in ");
+        localStorage.setItem("token", data);
+        console.log(data);
         navigate("/");
       }
       return;

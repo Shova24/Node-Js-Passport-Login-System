@@ -1,14 +1,13 @@
 import { Table } from "antd";
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { useState } from "react";
+import UserContext from "../Context/Context";
 
 export default function Dashboard() {
-  const [user, setUser] = useState([]);
+  const { user, getUsers } = useContext(UserContext);
 
   useEffect(() => {
-    fetch("http://localhost:4000/users/get-user")
-      .then((res) => res.json())
-      .then((data) => setUser(data));
+    getUsers();
   }, []);
   // console.log(user[0].id);
 
