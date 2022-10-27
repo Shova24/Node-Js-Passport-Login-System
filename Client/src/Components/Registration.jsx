@@ -20,7 +20,6 @@ export default function Registration() {
       }),
       headers: {
         "Content-type": "application/json; charset=UTF-8",
-        authorization: "Bearer ",
       },
     })
       .then((response) => response.json())
