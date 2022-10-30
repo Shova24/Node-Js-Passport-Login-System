@@ -1,10 +1,8 @@
 import Users from "../models/userModel";
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-
 export const registerUser = async (req, res) => {
   console.log("Post Register : ", req.body);
-
   try {
     const { username, email, password } = req.body;
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -49,10 +47,7 @@ export const login = async (req, res) => {
     }
     const is_exist = await bcrypt.compare(req.body.password, user.password);
     if (is_exist) {
-      const accessToken = jwt.sign(user, "secret");
-      console.log("====================================");
-      console.log(accessToken);
-      console.log("====================================");
+      const accessToken = jwt.sign(user, "secret", { expiresIn: "15s" });
       res.status(200).json(accessToken);
     } else {
       const error = new Error("Password did not matched");

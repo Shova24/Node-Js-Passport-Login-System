@@ -1,5 +1,5 @@
 import app from "./app";
-import sequelize from "./config/Database";
+import sequelize from "./src/config/Database";
 //Database Connect
 sequelize
   .sync()
